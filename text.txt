@@ -1,0 +1,90 @@
+import * as React from 'react';
+import './style.css';
+
+export default function App() {
+  const [obj, setObj] = React.useState([
+    {
+      key1: 10,
+      key2: 11,
+    },
+  ]);
+  // var obj = { key1: 'value1', key2: 'value2' };
+
+  // console.log(obj);
+  // Object.assign(obj, {key4: "value4"});
+
+  let num = 20;
+  let addObj = (value) => {
+    // setObj([...obj, { value5: value, value6: value }]);
+    // obj[0].key4 = value;
+    Object.assign(obj[0], { key4: 'value4' });
+    console.log(obj);
+  };
+
+  return (
+    <div>
+      <h1>Hello StackBlitz!</h1>
+      <button
+        onClick={() => {
+          addObj(num++);
+        }}
+      >
+        click
+      </button>
+    </div>
+  );
+}
+
+
+table
+  <div class="col-lg-4">
+    <div class="p-3 border bg-light">
+      <div class="card" style={{height:"27rem"}}>
+        <img
+          src={props.Pizza.img}
+          class="card-img-top img-flex"
+          alt="Pizza Image"
+        />
+        <div class="card-body">
+        <div class="row">
+        <div class="col-12"style={{height:"6rem"}}>
+          <h5 class="card-title">{props.Pizza.pizza_name}</h5>
+          <p class="card-text">
+          {props.Pizza.about}
+          </p>
+          </div>
+          <div class="col-12">
+          <hr />
+          <select class="form-select" aria-label="Default select example">
+            <option value="1">small</option>
+            <option value="2">medium</option>
+            <option value="3">large</option>
+          </select>
+          <hr />
+          
+          </div>
+            <div class="col-12">
+            <a href="#" class="btn btn-success"
+            >Add to Card &nbsp;&nbsp;&#8377;{props.Pizza.price}</a
+          >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+   {pizzas.map((pizza) => {
+              if (pizza.pizza_type === "cheese") {
+                return (
+                  <PizzaCard Pizza={pizza}/>
+                );
+              }
+
+              <button
+                              onClick={() => addPizza(Pizza)}
+                              className="btn btn-danger"
+                            >
+                              Add to card
+                            </button>
