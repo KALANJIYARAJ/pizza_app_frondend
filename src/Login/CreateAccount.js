@@ -16,6 +16,7 @@ function CreateAccount() {
           email: "",
           password: "",
           phone: "",
+          gender:"male",
           user_type: "user",
           address:""
         },
@@ -172,6 +173,20 @@ function CreateAccount() {
                   {formik.touched.phone && formik.errors.phone ? (
                     <span style={{ color: "red" }}>{formik.errors.phone}</span>
                   ) : null}
+                </div>
+              </div>
+              <div className="col-lg-12 g-3">
+                <div className="form-group">
+                  <label>Gender</label>
+                  <select
+                    name="gender"
+                    onChange={formik.handleChange}
+                    value={formik.values.gender}
+                    className="form-control"
+                  >
+                    <option>male</option>
+                    <option>female</option>
+                  </select>
                 </div>
               </div>
               <div className="col-lg-12 g-3">

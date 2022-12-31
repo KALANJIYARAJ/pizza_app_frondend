@@ -5,7 +5,7 @@ import { UserContext } from "../UserContext";
 function Profile() {
 
   const { user, setUser } = useContext(UserContext);
-  
+ console.log(user.gender)
   return (
     <section className="vh-100" style={{ backgroundColor: "#f4f5f7" }}>
       <div className="container py-5 h-100">
