@@ -29,7 +29,6 @@ function Payment() {
       tax:"",
       total:"",
       payment_status:"nopaid",
-      pizza_size:"small"
     },
 
     onSubmit: async (values) => {

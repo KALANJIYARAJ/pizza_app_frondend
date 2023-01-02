@@ -4,13 +4,13 @@ import { UserContext } from "../UserContext";
 function PizzaCard(props) {
   const { pizzas } = useContext(UserContext);
   const { cartItems, setCartItems } = useContext(UserContext);
-  const [price, setPrice] = useState({
-    
-  });
+  const [price, setPrice] = useState({size:"",price:""});
   const [id, setId] = useState();
 
   const handleInputs = (e) => {
-    setPrice(e.target.value);
+    let arr = e.target.value.split(",")
+    setPrice(previousState => {
+      return { ...previousState, size:arr[0], price:arr[1]}});
   };
 
   let indexfind = (id) => {
@@ -18,11 +18,13 @@ function PizzaCard(props) {
   };
 
   //add selected pizza to card item
-  let addPizza = (Pizza) => {
-    setCartItems([...cartItems, { Pizza, price,add_items:[{"item_name":"Onion","item_icon_name":"Onion","item_price":"0",
-    "item_type":"veggies"}]}]);
+  let addPizza = ({pizza_name,img},{size,price}) => {
+    // setCartItems([...cartItems, { Pizza, price,add_items:[{"item_name":"Onion","item_icon_name":"Onion","item_price":"0",
+    // "item_type":"veggies"}]}]);
+    setCartItems([...cartItems,{pizza_name:pizza_name,image:img,size:size,price:price,add_items:[{item_name:"Onion",item_price:"0"}]}])
   };
 
+  // console.log(cartItems);
   return (
     <>
       {pizzas.map((Pizza, index) => {
@@ -52,16 +54,16 @@ function PizzaCard(props) {
                             handleInputs(e);
                           }}
                         >
-                          <option name="small" value={Pizza.small}>
+                          <option name="small" value={["small",Pizza.small]}>
                             Small
                           </option>
-                          <option name="medium" value={Pizza.medium}>
+                          <option name="medium" value={["medium",Pizza.medium]}>
                             Medium
                           </option>
-                          <option name="large" value={Pizza.large}>
+                          <option name="large" value={["large",Pizza.large]}>
                             Large
                           </option>
-                          <option name="extra_large" value={Pizza.extra_large}>
+                          <option name="extra_large" value={["extra_large",Pizza.extra_large]}>
                             Extra Large
                           </option>
                         </select>
@@ -71,11 +73,11 @@ function PizzaCard(props) {
                         {id === Pizza._id ? (
                           <button
                             onClick={() => {
-                              addPizza(Pizza);
+                              addPizza(Pizza,price);
                             }}
                             className="btn btn-success"
                           >
-                            Add to Card &nbsp;&nbsp;&#8377;{price}
+                            Add to Card &nbsp;&nbsp;&#8377;{price.price}
                           </button>
                         ) : (
                           <button className="btn btn-success" disabled>

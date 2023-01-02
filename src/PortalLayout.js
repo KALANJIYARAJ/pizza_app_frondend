@@ -13,6 +13,7 @@ function PortalLayout() {
   const { total, setTotal } = useContext(UserContext);
   const { vmTotal, setVmTotal } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
+  const [itemTotal,setItemTotal] = useState(0);
 
   useEffect(() => {
     fetchData();
@@ -29,13 +30,13 @@ function PortalLayout() {
     }
   };
 
-  let removeFromCart = (id) => {
-    const indexVal = cartItems.findIndex((obj) => obj.Pizza._id === id);
+  let removeFromCart = (indexVal) => {
+    // const indexVal = cartItems.findIndex((obj) => obj.Pizza._id === id);
     cartItems.splice(indexVal, 1);
     setCartItems([...cartItems]);
   };
 
-
+// console.log(cartItems)
   return (
     <div className="container-fluid">
       <Topbar />
@@ -69,7 +70,7 @@ function PortalLayout() {
               <div className="card-body">
                 <h1>Welcome</h1>
                 <ol className="list-group text-start">
-                  {cartItems.map((items, index) => {
+                  {cartItems.map((item, index) => {
                     return (
                       <li
                         key={index}
@@ -84,19 +85,18 @@ function PortalLayout() {
                           <Link
                             className="fw-bold text-black removeUnderLine"
                             to={`/addvm/${index}`}>
-                            {items.Pizza.pizza_name}
+                            {item.pizza_name}
                           </Link>
                           {
-                            setVmTotal(
-                              items.add_items.reduce((prev, curr) => {
+                            setVmTotal(item.add_items.reduce((prev, curr) => {
                                 return (prev = parseInt(prev) + parseInt(curr.item_price));
                               }, 0))
                           }
                         </div>
-                        {items.price}&nbsp;&nbsp;
+                        {item.price}&nbsp;&nbsp;
                         <button
                           onClick={() => {
-                            removeFromCart(items.Pizza._id);
+                            removeFromCart(index);
                           }}
                           className="badge bg-black rounded-pill p-2"
                         >

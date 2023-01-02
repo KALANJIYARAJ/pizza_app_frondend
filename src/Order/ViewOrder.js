@@ -36,8 +36,6 @@ function ViewOrder() {
      }
    }
 
-   console.log(orders);
-
   return (
     <div className="container-fluid">
     <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -71,6 +69,7 @@ function ViewOrder() {
                 <th>Payment_status</th>
                 <th>Pizza Name</th>
                 <th>Pizza Size</th>
+                <th>Add Items</th>
                 <th>total</th>
                 <th>Order Status</th>
               </tr>
@@ -84,6 +83,7 @@ function ViewOrder() {
                 <th>Payment_status</th>
                 <th>Pizza_name</th>
                 <th>Pizza_size</th>
+                <th>Add Items</th>
                 <th>total</th>
                 <th>Order Status</th>
               </tr>
@@ -99,6 +99,10 @@ function ViewOrder() {
                   <td>{order.payment_status}</td>
                   <td>{order.pizza_name}</td>
                   <td>{order.pizza_size}</td>
+                  <td>{order.add_items.map((item)=>{
+                    return<p>{item.item_name}</p>
+                  })}</td>
+                  {/* <td>{order.add_items}</td> */}
                   <td>{order.total}</td>
                   <td>{order.order_status}</td>
                   <td>
