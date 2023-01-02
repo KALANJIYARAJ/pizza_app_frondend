@@ -34,7 +34,7 @@ function Topbar() {
           <Link className="nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {user.name}
           </Link>
-          <ul className="dropdown-menu bg-danger">
+          <ul className="dropdown-menu bg-danger p-3">
           <li className="nav-item">
               <Link className="nav-link text-white" to={"/profile"}>Profile</Link>
             </li>

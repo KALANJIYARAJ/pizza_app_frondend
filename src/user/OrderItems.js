@@ -61,11 +61,11 @@ function OrderItems() {
           "
               >
                 <div className="ms-2 me-auto fw-bold">
-                  <img src={items.Pizza.img} style={{height:"30px",width:"30px"}}/>&nbsp;&nbsp;
+                  <img src={items.image} style={{height:"30px",width:"30px"}}/>&nbsp;&nbsp;
                     
               
                 </div>
-                {items.Pizza.pizza_name}&nbsp;&nbsp;
+                {items.pizza_name}&nbsp;&nbsp;
               </li>
             );
           })}
