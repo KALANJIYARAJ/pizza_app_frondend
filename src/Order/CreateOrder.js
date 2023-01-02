@@ -1,42 +1,44 @@
-import axios from "axios";
-import { useFormik } from "formik";
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { config } from "../config";
+import axios from 'axios';
+import { useFormik } from 'formik';
+import React from 'react'
+import { useNavigate } from 'react-router-dom';
+import { config } from '../config';
 
-function CreatePizza() {
-  const navigate = useNavigate();
+function CreateOrder() {
 
-  const formik = useFormik({
-    initialValues: {
-      pizza_name: "",
-      img: "",
-      about: "",
-      small:"",
-      medium:"",
-      large:"",
-      extra_large:"",
-      price:"",
-      pizza_type:"base"
-      
-    },
+    const navigate = useNavigate();
 
-    onSubmit: async (values) => {
-      try {
-        await axios.post(`${config.api}/pizza`, values);
-        alert("Success");
-        formik.resetForm();
-        navigate("/admin/viewpizza");
-      } catch (error) {
-        alert("Error");
-      }
-    },
-  });
+    const formik = useFormik({
+      initialValues: {
+        pizza_name: "",
+        img: "",
+        about: "",
+        small:"",
+        medium:"",
+        large:"",
+        extra_large:"",
+        price:"",
+        pizza_type:"base"
+        
+      },
+  
+      onSubmit: async (values) => {
+        try {
+          await axios.post(`${config.api}/pizza`, values);
+          alert("Success");
+          formik.resetForm();
+          navigate("/admin/viewpizza");
+        } catch (error) {
+          alert("Error");
+        }
+      },
+    });
+
   return (
     <div className="container forcenter">
     <div className="card m-2" style={{maxWidth:"30rem"}}>
     <div class="card-body">
-    <h1 className=' bg-danger p-4 text-white'>Create Pizza</h1>
+    <h1 className=' bg-danger p-4 text-white text-center'>Order</h1>
     <form onSubmit={formik.handleSubmit}>
         <div className="row">
           <div className="col-lg-12 mt-2">
@@ -172,7 +174,7 @@ function CreatePizza() {
   </div>
   </div>
      
-  );
+  )
 }
 
-export default CreatePizza;
+export default CreateOrder

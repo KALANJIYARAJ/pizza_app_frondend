@@ -4,7 +4,9 @@ import { UserContext } from "../UserContext";
 function PizzaCard(props) {
   const { pizzas } = useContext(UserContext);
   const { cartItems, setCartItems } = useContext(UserContext);
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState({
+    
+  });
   const [id, setId] = useState();
 
   const handleInputs = (e) => {
@@ -50,16 +52,16 @@ function PizzaCard(props) {
                             handleInputs(e);
                           }}
                         >
-                          <option name={"small"} value={Pizza.small}>
+                          <option name="small" value={Pizza.small}>
                             Small
                           </option>
-                          <option name={"medium"} value={Pizza.medium}>
+                          <option name="medium" value={Pizza.medium}>
                             Medium
                           </option>
-                          <option name={"large"} value={Pizza.large}>
+                          <option name="large" value={Pizza.large}>
                             Large
                           </option>
-                          <option name={"extra_large"} value={Pizza.extra_large}>
+                          <option name="extra_large" value={Pizza.extra_large}>
                             Extra Large
                           </option>
                         </select>

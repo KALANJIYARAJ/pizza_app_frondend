@@ -1,42 +1,66 @@
-import axios from "axios";
-import { useFormik } from "formik";
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { config } from "../config";
+import axios from 'axios';
+import { useFormik } from 'formik';
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
+import { config } from '../config';
 
-function CreatePizza() {
-  const navigate = useNavigate();
+function EditPizza() {
+const param = useParams();
+const [pizza, setPizza] = useState([]);
+const navigate = useNavigate();
 
-  const formik = useFormik({
-    initialValues: {
-      pizza_name: "",
-      img: "",
-      about: "",
-      small:"",
-      medium:"",
-      large:"",
-      extra_large:"",
-      price:"",
-      pizza_type:"base"
-      
-    },
+const formik = useFormik({
+  initialValues: {
+    pizza_name: "",
+    img: "",
+    about: "",
+    small:"",
+    medium:"",
+    large:"",
+    extra_large:"",
+    price:"",
+    pizza_type:"base"
+  },
 
-    onSubmit: async (values) => {
-      try {
-        await axios.post(`${config.api}/pizza`, values);
-        alert("Success");
-        formik.resetForm();
-        navigate("/admin/viewpizza");
-      } catch (error) {
-        alert("Error");
-      }
-    },
-  });
+  onSubmit: async (values) => {
+    try {
+      await axios.post(`${config.api}/editpizza/${param.pizzaid}`, values);
+      alert("Success");
+      formik.resetForm();
+      navigate("/admin/viewpizza");
+    } catch (error) {
+      alert("Error");
+    }
+  },
+});
+
+useEffect(() => {
+  fetchData()
+ }, []);
+
+ let fetchData = async () => {
+  try {
+    const getPizza = await axios.get(`${config.api}/pizza/${param.pizzaid}`);
+    setPizza(getPizza.data[0])
+  formik.setFieldValue("pizza_name",getPizza.data[0].pizza_name)
+  formik.setFieldValue("img",getPizza.data[0].img)
+  formik.setFieldValue("about",getPizza.data[0].about)
+  formik.setFieldValue("small",getPizza.data[0].small)
+  formik.setFieldValue("medium",getPizza.data[0].medium)
+  formik.setFieldValue("large",getPizza.data[0].large)
+  formik.setFieldValue("extra_large",getPizza.data[0].extra_large)
+  formik.setFieldValue("price",getPizza.data[0].price)
+  formik.setFieldValue("pizza_type",getPizza.data[0].pizza_type)
+  } catch (error) {
+    alert("Error");
+  }
+};
+
   return (
     <div className="container forcenter">
     <div className="card m-2" style={{maxWidth:"30rem"}}>
     <div class="card-body">
-    <h1 className=' bg-danger p-4 text-white'>Create Pizza</h1>
+    <h1 className=' bg-danger p-4 text-white'>Edit Pizza</h1>
     <form onSubmit={formik.handleSubmit}>
         <div className="row">
           <div className="col-lg-12 mt-2">
@@ -171,8 +195,7 @@ function CreatePizza() {
   </div>
   </div>
   </div>
-     
-  );
+  )
 }
 
-export default CreatePizza;
+export default EditPizza

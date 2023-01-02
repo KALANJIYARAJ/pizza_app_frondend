@@ -13,6 +13,7 @@ console.log(param.userId);
     const formik = useFormik({
         initialValues: {
           password: "",
+          password1:""
           // password1: "",
         },
     
@@ -25,6 +26,14 @@ console.log(param.userId);
     
           if (values.password && values.password.length !== 8) {
             error.password = "pasword must 8 characters";
+          }
+
+          if (!values.password1) {
+            error.password1 = "Please Enter a valid password";
+          }
+    
+          if (values.password1 && values.password1.length !== 8) {
+            error.password1 = "pasword must 8 characters";
           }
     
           return error;
@@ -82,7 +91,7 @@ console.log(param.userId);
                       }`}
                       />
                       {formik.touched.password && formik.errors.password? (
-                        <span style={{ color: "red" }}>
+                        <span style={{ color: "white" }}>
                           {formik.errors.password}
                         </span>
                       ) : null}
@@ -107,7 +116,7 @@ console.log(param.userId);
                             : ""
                         }`} />
                         {formik.touched.password1 && formik.errors.password1 ? (
-                        <span style={{ color: "red" }}>
+                        <span style={{ color: "white" }}>
                           {formik.errors.password1}
                         </span>
                       ) : null}

@@ -24,10 +24,12 @@ function Payment() {
       address:"",
       payment_type:"",
       order_status:"conform",
-      pizza:{},
+      pizza:"",
       sub_total:"",
       tax:"",
       total:"",
+      payment_status:"nopaid",
+      pizza_size:"small"
     },
 
     onSubmit: async (values) => {

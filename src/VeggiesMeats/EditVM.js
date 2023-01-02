@@ -1,22 +1,25 @@
-import axios from "axios";
-import { useFormik } from "formik";
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { config } from "../config";
+import axios from 'axios';
+import { useFormik } from 'formik';
+import React, { useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
+import { config } from '../config';
 
-function CreateVeggiesMeats() {
-  const navigate = useNavigate();
+function EditVM() {
+
+  const param = useParams();
+const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       item_name: "",
       item_icon_name: "",
       item_price: "",
-      item_type: "veggies",
+      item_type: "",
     },
 
     onSubmit: async (values) => {
       try {
-        await axios.post(`${config.api}/veggies_meats`, values);
+        await axios.post(`${config.api}/editvm/${param.vmid}`,values);
         alert("Success");
         formik.resetForm();
         navigate("/admin/viewvm");
@@ -25,6 +28,23 @@ function CreateVeggiesMeats() {
       }
     },
   });
+
+  useEffect(() => {
+    fetchData()
+   }, []);
+  
+   let fetchData = async () => {
+    try {
+    const getVm = await axios.get(`${config.api}/vm/${param.vmid}`);
+
+    formik.setFieldValue("item_name",getVm.data[0].item_name)
+    formik.setFieldValue("item_icon_name",getVm.data[0].item_icon_name)
+    formik.setFieldValue("item_price",getVm.data[0].item_price)
+    formik.setFieldValue("item_type",getVm.data[0].item_type)
+    } catch (error) {
+      alert("Error");
+    }
+  };
   return (
     <div className="container forcenter">
     <div className="card m-2" style={{maxWidth:"30rem"}}>
@@ -99,4 +119,4 @@ function CreateVeggiesMeats() {
   );
 }
 
-export default CreateVeggiesMeats;
+export default EditVM

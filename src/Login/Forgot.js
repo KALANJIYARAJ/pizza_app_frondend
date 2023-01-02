@@ -71,7 +71,7 @@ function Forgot() {
                       }`}
                       />
                       {formik.touched.email && formik.errors.email ? (
-                        <span style={{ color: "red" }}>
+                        <span style={{ color: "white" }}>
                           {formik.errors.email}
                         </span>
                       ) : null}

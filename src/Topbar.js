@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "./UserContext";
 
 function Topbar() {
-  const { user, setUser } = useContext(UserContext);
+  const { user} = useContext(UserContext);
   return (
     <> 
 <nav className="navbar navbar-expand-lg navbar-dark bg-danger fixed-top">
@@ -30,21 +30,6 @@ function Topbar() {
               <Link className="nav-link text-white" to={"meat"}>Meat</Link>
             </li>
       </ul>
-      {user.user_type == "admin"?
-      <div className="nav-item dropdown m-2">
-          <Link className="nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Admin
-          </Link>
-          <ul className="dropdown-menu bg-danger">
-          <li className="nav-item">
-              <Link className="nav-link text-white" to={"createpizza"}>Create Pizza</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-white" to={"createVM"}>CreateVeggiesMeals</Link>
-            </li>
-          </ul>
-        </div>:null}
-
       <div className="nav-item dropdown m-2">
           <Link className="nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {user.name}

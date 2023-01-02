@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { config } from "../config";
 import { UserContext } from "../UserContext";
 
 function Login() {
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -29,7 +29,7 @@ function Login() {
       }
 
       if (!values.password) {
-        error.password = "Please Enter a email";
+        error.password = "Please Enter Password";
       }
 
       if (values.password && values.password.length < 8) {
@@ -45,7 +45,7 @@ function Login() {
         setUser(user1.data);
         if(user1.data.user_type === 'admin'){
         alert("You must be a admin");
-        navigate("/portal/base");
+        navigate("/admin/vieworder");
       }else if(user1.data.user_type === 'user'){
         alert("You must be a user");
         navigate("/portal/base");
@@ -92,7 +92,7 @@ function Login() {
                       }`}
                       />
                       {formik.touched.email && formik.errors.email ? (
-                        <span style={{ color: "red" }}>
+                        <span style={{ color: "white" }}>
                           {formik.errors.email}
                         </span>
                       ) : null}
@@ -117,7 +117,7 @@ function Login() {
                             : ""
                         }`} />
                         {formik.touched.password && formik.errors.password ? (
-                        <span style={{ color: "red" }}>
+                        <span style={{ color: "white" }}>
                           {formik.errors.password}
                         </span>
                       ) : null}
@@ -145,84 +145,3 @@ function Login() {
 }
 
 export default Login;
-
-
-
-{/* <form onSubmit={formik.handleSubmit} className="user">
-                    <div className="form-group">
-                      <input
-                        name="email"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.email}
-                        type={"text"}
-                        id="exampleInputEmail"
-                        placeholder="Enter Email Address..."
-                        className={`form-control form-control-user ${
-                          formik.touched.email && formik.errors.email
-                            ? "error-box"
-                            : ""
-                        }
-                      ${
-                        formik.touched.email && !formik.errors.email
-                          ? "succes-box"
-                          : ""
-                      }`}
-                      />
-                      {formik.touched.email && formik.errors.email ? (
-                        <span style={{ color: "red" }}>
-                          {formik.errors.email}
-                        </span>
-                      ) : null}
-                    </div>
-                    <div className="form-group">
-                      <input
-                        name="password"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        values={formik.values.password}
-                        type="password"
-                        id="exampleInputPassword"
-                        placeholder="Password"
-                        className={`form-control form-control-user ${
-                          formik.touched.password && formik.errors.password
-                            ? "error-box"
-                            : ""
-                        }
-                                ${
-                                  formik.touched.password &&
-                                  !formik.errors.password
-                                    ? "succes-box"
-                                    : ""
-                                }`}
-                      />
-                      {formik.touched.password && formik.errors.password ? (
-                        <span style={{ color: "red" }}>
-                          {formik.errors.password}
-                        </span>
-                      ) : null}
-                    </div>
-                    <div className="form-group">
-                      <div className="custom-control custom-checkbox small">
-                        <input
-                          type="checkbox"
-                          className="custom-control-input"
-                          id="customCheck"
-                        />
-                        <label
-                          className="custom-control-label"
-                          for="customCheck"
-                        >
-                          Remember Me
-                        </label>
-                      </div>
-                    </div>
-                    <button
-                      type="submit"
-                      className="btn btn-primary btn-user btn-block"
-                    >
-                      Login
-                    </button>
-
-                    <hr />
-                  </form> */}
