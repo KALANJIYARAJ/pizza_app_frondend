@@ -84,7 +84,7 @@ function PortalLayout() {
                       >
                         <div className="ms-2 me-auto">
                           <Link
-                            className="fw-bold text-black removeUnderLine"
+                            className="fw-bold removeUnderLine  hover"
                             to={`/addvm/${index}`}
                           >
                             {item.pizza_name}
