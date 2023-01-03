@@ -66,6 +66,8 @@ function ViewUser() {
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Address</th>
+                <th>Type</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tfoot>
@@ -74,6 +76,8 @@ function ViewUser() {
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Address</th>
+                <th>Type</th>
+                <th>Action</th>
               </tr>
             </tfoot>
             <tbody>
@@ -84,6 +88,7 @@ function ViewUser() {
                   <td>{user.email}</td>
                   <td>{user.phone}</td>
                   <td>{user.address}</td>
+                  <td>{user.user_type}</td>
                   <td>
                     <Link to={`/admin/edituser/${user._id}`} className ="btn btn-warning m-1">
                       Edit

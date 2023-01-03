@@ -73,6 +73,7 @@ function ViewVM() {
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Address</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tfoot>
@@ -81,6 +82,7 @@ function ViewVM() {
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Address</th>
+                <th>Action</th>
               </tr>
             </tfoot>
             <tbody>

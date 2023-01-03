@@ -13,7 +13,7 @@ function PortalLayout() {
   const { total, setTotal } = useContext(UserContext);
   const { vmTotal, setVmTotal } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
-  const [itemTotal,setItemTotal] = useState(0);
+  const [itemTotal, setItemTotal] = useState(0);
 
   useEffect(() => {
     fetchData();
@@ -36,7 +36,8 @@ function PortalLayout() {
     setCartItems([...cartItems]);
   };
 
-// console.log(cartItems)
+  let itemprice = 0;
+  console.log(cartItems);
   return (
     <div className="container-fluid">
       <Topbar />
@@ -84,15 +85,31 @@ function PortalLayout() {
                         <div className="ms-2 me-auto">
                           <Link
                             className="fw-bold text-black removeUnderLine"
-                            to={`/addvm/${index}`}>
+                            to={`/addvm/${index}`}
+                          >
                             {item.pizza_name}
                           </Link>
-                          {
-                            setVmTotal(item.add_items.reduce((prev, curr) => {
-                                return (prev = parseInt(prev) + parseInt(curr.item_price));
-                              }, 0))
-                          }
+                          <span className="text-white">
+                            &nbsp;&nbsp;{" "}
+                            {
+                              (itemprice =
+                                itemprice +
+                                item.add_items.reduce((prev, curr) => {
+                                  return (prev =
+                                    parseInt(prev) + parseInt(curr.item_price));
+                                }, 0))
+                            }
+                          </span>
+
+                          <br/>
+                        <div> add_items:
+                            {item.add_items.map((aitem, index) => {
+                              return <span>&nbsp;{aitem.item_name}</span>
+                            })}.
+                          </div>
+
                         </div>
+
                         {item.price}&nbsp;&nbsp;
                         <button
                           onClick={() => {
@@ -101,7 +118,7 @@ function PortalLayout() {
                           className="badge bg-black rounded-pill p-2"
                         >
                           x
-                        </button> 
+                        </button>
                       </li>
                     );
                   })}
@@ -111,10 +128,12 @@ function PortalLayout() {
                     <h6 className="fw-bold text-start">SUBTOTAL</h6>
                   </div>
                   <div className="col-6">
-                    {setSubTotal(vmTotal+
-                      cartItems.reduce((prev, curr) => {
-                        return (prev = parseInt(prev) + parseInt(curr.price));
-                      }, 0))}
+                    {setSubTotal(
+                      itemprice +
+                        cartItems.reduce((prev, curr) => {
+                          return (prev = parseInt(prev) + parseInt(curr.price));
+                        }, 0)
+                    )}
                     <h6 className="fw-bold text-end">{subTotal}</h6>
                   </div>
                   <div className="col-6">

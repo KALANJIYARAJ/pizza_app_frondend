@@ -44,10 +44,8 @@ function Login() {
         const user1 =await axios.post(`${config.api}/login`, values);
         setUser(user1.data);
         if(user1.data.user_type === 'admin'){
-        alert("You must be a admin");
         navigate("/admin/vieworder");
       }else if(user1.data.user_type === 'user'){
-        alert("You must be a user");
         navigate("/portal/base");
       }else{
         alert("incorrect username/password");

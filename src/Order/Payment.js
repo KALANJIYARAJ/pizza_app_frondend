@@ -8,7 +8,7 @@ import { UserContext } from "../UserContext";
 function Payment() {
 
   const { user} = useContext(UserContext);
-  const { cartItems } = useContext(UserContext);
+  const { cartItems,setCartItems } = useContext(UserContext);
   const { subTotal } = useContext(UserContext);
   const { tax } = useContext(UserContext);
   const { total } = useContext(UserContext);
@@ -34,8 +34,9 @@ function Payment() {
     onSubmit: async (values) => {
       try {
         await axios.post(`${config.api}/order`, values);
-        alert("Success");
+        alert("your order conform successfully");
         formik.resetForm();
+        setCartItems([])
         navigate("/portal/base");
         console.log(values);
       } catch (error) {

@@ -72,6 +72,7 @@ function ViewOrder() {
                 <th>Add Items</th>
                 <th>total</th>
                 <th>Order Status</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tfoot>
@@ -86,6 +87,7 @@ function ViewOrder() {
                 <th>Add Items</th>
                 <th>total</th>
                 <th>Order Status</th>
+                <th>Action</th>
               </tr>
             </tfoot>
             <tbody>

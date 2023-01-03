@@ -74,6 +74,7 @@ useEffect(() => {
                 <th>Large</th>
                 <th>Extra_Large</th>
                 <th>Type</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tfoot>
@@ -86,6 +87,7 @@ useEffect(() => {
                 <th>Large</th>
                 <th>Extra_Large</th>
                 <th>Type</th>
+                <th>Action</th>
               </tr>
             </tfoot>
             <tbody>
