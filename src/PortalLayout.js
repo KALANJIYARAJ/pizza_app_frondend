@@ -37,7 +37,7 @@ function PortalLayout() {
   };
 
   let itemprice = 0;
-  console.log(cartItems);
+ 
   return (
     <div className="container-fluid">
       <Topbar />
