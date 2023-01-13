@@ -11,9 +11,7 @@ function PortalLayout() {
   const { subTotal, setSubTotal } = useContext(UserContext);
   const { tax, setTax } = useContext(UserContext);
   const { total, setTotal } = useContext(UserContext);
-  const { vmTotal, setVmTotal } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
-  const [itemTotal, setItemTotal] = useState(0);
 
   useEffect(() => {
     fetchData();

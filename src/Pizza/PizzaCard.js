@@ -21,7 +21,7 @@ function PizzaCard(props) {
   let addPizza = ({pizza_name,img},{size,price}) => {
     // setCartItems([...cartItems, { Pizza, price,add_items:[{"item_name":"Onion","item_icon_name":"Onion","item_price":"0",
     // "item_type":"veggies"}]}]);
-    setCartItems([...cartItems,{pizza_name:pizza_name,image:img,size:size,price:price,add_items:[{item_name:"Onion",item_price:"0"}]}])
+    setCartItems([...cartItems,{pizza_name:pizza_name,image:img,size:size,price:price,add_items:[{item_name:"Onion",item_price:"0",item_type:"veggies"}]}])
   };
 
   // console.log(cartItems);

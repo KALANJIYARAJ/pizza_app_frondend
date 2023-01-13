@@ -43,7 +43,6 @@ function Login() {
       try {
         const user1 =await axios.post(`${config.api}/login`, values);
         localStorage.setItem('pizza-app',user1.data.token)
-        console.log(user1.data.user);
         setUser(user1.data.user);
         if(user1.data.user.user_type === 'admin'){
         navigate("/admin/vieworder");
